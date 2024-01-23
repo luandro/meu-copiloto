@@ -1,0 +1,33 @@
+{
+  "name": "meu-copiloto-node",
+  "version": "1.0.0",
+  "description": "Voice copilot application in NodeJS",
+  "scripts": {
+    "start": "node src/index.js -a $PICOVOICE_KEY -k ../resources/pt/computador_pt_linux_v3_0_0.ppn -c ../resources/pt/Meu-Copiloto_pt_linux_v3_0_0.rhn --porcupine_model_file_path ../resources/pt/porcupine_params_pt.pv --rhino_model_file_path ../resources/pt/rhino_params_pt.pv",
+    "dev": "nodenv REPL -E ../.env -e 'nodemon' -- 'npm start'"
+  },
+  "keywords": [
+    "porcupine, rhino, picovoice, inference, intent, nlu, offline, private, voice ai, speech recognition, microphone, mic, realtime, wake word, trigger word, hotword"
+  ],
+  "author": "luandro <luandro@gmail.com>",
+  "dependencies": {
+    "@picovoice/picovoice-node": "~3.0.1",
+    "@picovoice/pvrecorder-node": "~1.2.1",
+    "commander": "^6.1.0",
+    "openai": "^4.25.0",
+    "wavefile": "^11.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luandro/meu-copiloto.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "cpu": [
+    "!ia32",
+    "!mips",
+    "!ppc",
+    "!ppc64"
+  ]
+}

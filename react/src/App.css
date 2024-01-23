@@ -1,0 +1,72 @@
+.recButton {
+	width: 80px;
+	height: 80px;
+	font-size: 0;
+	background-color: white;
+	border: 0;
+	border-radius: 80px;
+	margin: 18px;
+	outline: none;
+}
+
+.notRec {
+	background-color: white;
+	border: 1px solid black;
+}
+
+.Rec {
+	animation-name: pulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0px 0px 5px 0px rgba(173, 0, 0, .3);
+	}
+
+	65% {
+		box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, .3);
+	}
+
+	90% {
+		box-shadow: 0px 0px 5px 13px rgba(173, 0, 0, 0);
+	}
+}
+
+.voice-widget {
+	max-width: 600px;
+	margin: auto;
+}
+
+.App {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.loaded-indicator {
+	/* Styles for loaded indicator */
+	color: green;
+	margin-right: 10px;
+}
+
+.error-indicator {
+	/* Styles for error indicator */
+	color: red;
+	margin-right: 10px;
+}
+
+.access-key-error-indicator {
+	/* Styles for access key error indicator */
+	color: orange;
+}
+
+.keyword-select {
+	/* Styles for keyword select dropdown */
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}

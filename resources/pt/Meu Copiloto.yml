@@ -1,0 +1,77 @@
+context:
+  expressions:
+    listEmails:
+      - "@veja (meu, meus, os) [email, emails] (de, do) ($date:emailDate)"
+    listCalendar:
+      - "@veja [as, minha, minhas] ($date:meetingDate) @calendário"
+      - "@veja (meu, meus, o) @calendário (para, de, da, do)
+        ($date:calendarDate)"
+    listTasks:
+      - "@veja (as, minhas) tarefas (para, de, da, do) ($date:taskDate)"
+    time:
+      - "@veja [hora, horas, horário] (de, são) (agora)"
+    record:
+      - $action:recordAction (a, uma) ($date:recordDate) @gravação
+    music:
+      - $action:musicAction (uma) [música, canção]
+    sendEMail: []
+    transcription:
+      - $action:transcriptionAction (uma) transcrição
+    news:
+      - $action:actionNews (as) [notícias, reportagens, acontecimentos,
+        matérias] de ($date:dateNews)
+  slots:
+    date:
+      - última
+      - primeira
+      - próximas
+      - próxima
+      - dia
+      - atrasadas
+      - passadas
+      - próxima semana
+      - semana
+      - amanhã
+      - hoje
+    action:
+      - abrir
+      - começar
+      - terminar
+      - termine
+      - finalize
+      - finalizar
+      - des pause
+      - continuar
+      - continue
+      - inicie
+      - comece a tocar
+      - tocar
+      - toque
+      - pule
+      - pause
+      - pare
+      - comece
+    createAction: []
+    item: []
+  macros:
+    veja:
+      - como estão
+      - quais
+      - mostre
+      - diga
+      - que
+      - como está
+      - qual
+      - liste
+      - leia
+      - veja
+    calendário:
+      - calendário
+      - agendamento
+      - chamadas
+      - chamada
+      - reuniões
+      - reunião
+    gravação:
+      - gravação
+      - gravar

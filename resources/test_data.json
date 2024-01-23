@@ -1,0 +1,10 @@
+{
+	"tests": {
+		"singleKeyword": [
+			{
+				"language": "pt",
+				"wakeword": "Maria"
+			}
+		]
+	}
+}
