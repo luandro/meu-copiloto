@@ -2,7 +2,6 @@
 
 # Meu Copiloto
 
-
 Welcome to the Meu Copiloto Project, a cutting-edge voice copilot application designed to provide an intuitive and private voice interaction experience. Built with the power of Picovoice technology, this application runs entirely on-device, ensuring your data remains secure and your interactions are swift and reliable.
 
 ## Description
@@ -21,7 +20,17 @@ Meu Copiloto is a voice-enabled application that allows users to interact with t
 
 ## Usage
 
+
+### API Keys
+
 To get started with Meu Copiloto, you'll need a valid Picovoice `AccessKey`, which serves as your credentials when using the SDKs. Obtain your `AccessKey` for free by signing up or logging in to the [Picovoice Console](https://console.picovoice.ai/).
+
+To use the copilot with your Gmail, Calendar, and Tasks, you must first create Google API keys. Follow [these](https://developers.google.com/docs/api/quickstart/nodejs) steps to set up your API keys, test users, and redirect url for authentication. In case the Google documentation isn't clear try also following [this guide](https://dev.to/yksolanki9/noobs-guide-to-using-any-google-api-in-nodejs-1j8g).
+
+To get daily news head over to [NewsAPI](https://newsapi.org/) to get a an API key, and set your favorite sources in the `.env` file.
+
+Once you have created your API keys, copy them and paste them into the `.env` file of the project.
+
 
 ### Installation
 
@@ -44,6 +53,17 @@ To run the React web application, you first need to copy the .env file inside th
 npm run dev:web
 ```
 
+### Audio manipulation
+
+These tools are currently being used for playing music and manipulating audio files, make sure you have them installed:
+
+- **[playerctl](https://github.com/altdesktop/playerctl):** A command-line utility for controlling media playback on Linux. Essential for managing music playback through voice commands.
+- **[ffmpeg](https://ffmpeg.org/):** A powerful multimedia framework capable of recording, converting, and streaming audio and video. It is used for various audio manipulation tasks within the application.
+
+### Speech-to-text
+
+**[whisper-ctranslate2](https://github.com/Softcatala/whisper-ctranslate2)** is used for STT. It's an efficient implementation of OpenAI's Whisper model for speech-to-text, using the CTranslate2 inference engine. To install and use whisper-ctranslate2 for transcribing audio to text, please refer to the instructions on the linked GitHub repository. Download models from [huggingface](https://huggingface.co/models?search=faster-whisper) and add location to `.env`.
+
 ### Text-to-speech
 
 We're using [piper](https://github.com/rhasspy/piper) for TTS services. Make sure to install it and have it available as `piper-tts` on the command-line.
@@ -64,6 +84,7 @@ You'll also need the model files, which can be automatically downloaded using th
 
 ## Roadmap
 
+- [ ] Web application: Integrate skills to the React web app.
 - [ ] Reading news: Integrate news API to fetch and read the latest news.
 - [ ] Responding to emails: Develop functionality for summarizing and responding to emails via voice.
 - [ ] Adding and completing tasks: Implement task management features to add and complete tasks through voice commands.

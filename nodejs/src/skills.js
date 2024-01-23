@@ -6,6 +6,7 @@ const os = require("os");
 const currentRecordingFile = path.join(os.tmpdir(), "current_recording.txt");
 const recFolder = path.join(os.homedir(), "Documentos", "rec");
 const whisperModelFolder = process.env.WHISPER_MODEL_FOLDER;
+const musicPlayer = process.env.MUSIC_PLAYER;
 
 const executeCommand = (command, onSuccess, onError) => {
   exec(command, (error, stdout, stderr) => {
@@ -26,6 +27,7 @@ const executeSyncCommand = (command) => {
 };
 
 const getBluetoothSinkProfile = () => {
+  // TODO: make agnostic of bluetooth control
   return executeSyncCommand(
     'pacmd list-sinks | grep -B 1 "name:.*bluez_sink" | grep -oP "(?<=<).*(?=>)"',
   );
@@ -33,6 +35,7 @@ const getBluetoothSinkProfile = () => {
 
 const changeBluetoothProfile = (currentProfile, currentSink) => {
   if (currentProfile !== "a2dp_sink") {
+    // TODO: make agnostic of bluetooth control
     const btCommand = `pacmd set-card-profile ${currentSink} a2dp_sink`;
     console.log("Running:", btCommand);
     executeCommand(btCommand, null, (error) =>
@@ -41,13 +44,15 @@ const changeBluetoothProfile = (currentProfile, currentSink) => {
   }
 };
 
-const openSpotify = () => {
-  executeCommand("spotify &", null, (error) =>
+const openPlayer = () => {
+  // TODO: check different players,
+  executeCommand(`${musicPlayer} &`, null, (error) =>
     console.error("Error opening Spotify:", error),
   );
 };
 
 const tryPlayingMusic = () => {
+  // TODO: User node library instead of shell executing
   executeCommand("playerctl play", null, (error, stdout, stderr) => {
     if (stderr && stderr.includes("No players found")) {
       console.log("No players found, trying again...");
@@ -63,7 +68,7 @@ const playMusic = () => {
   const currentSink = `${addrParts[0].replace("sink", "card")}.${addrParts[1]}`;
   const currentProfile = addrParts[addrParts.length - 1];
   changeBluetoothProfile(currentProfile, currentSink);
-  openSpotify();
+  openPlayer();
   setTimeout(tryPlayingMusic, 7000);
 };
 
@@ -92,6 +97,7 @@ const playRecording = () => {
   if (latestRecordingDir) {
     const latestRecording = getLatestRecording(latestRecordingDir);
     if (latestRecording) {
+      // TODO: User node library instead of shell executing
       executeCommand(`aplay ${latestRecording}`, null, (error) =>
         console.error("Error playing the recording:", error),
       );
@@ -116,6 +122,7 @@ const startRecording = () => {
   }
   fs.writeFileSync(currentRecordingFile, recordingDir);
   tts("Iniciando gravação");
+  // TODO: User node library instead of shell executing
   executeCommand(`arecord -f cd ${recordingDir}/part_1.wav &`);
 };
 
@@ -169,6 +176,7 @@ const applyAudioFilter = (finalFile, recordingDir) => {
 const transcribeAudio = (finalFile, recordingDir) => {
   const modelFile = path.join(whisperModelFolder, "model.bin");
   if (fs.existsSync(modelFile)) {
+    // TODO: User node library for whisper instead of shell executing
     executeCommand(
       `whisper-ctranslate2 ${finalFile} --model_directory ${whisperModelFolder} --vad_filter True -f txt --output_dir ${recordingDir}`,
     );
@@ -229,6 +237,7 @@ const unpauseRecording = () => {
         }
       });
       const newIndex = maxIndex + 1;
+      // TODO: User node library instead of shell executing
       executeCommand(`arecord -f cd ${recordingDir}/part_${newIndex}.wav &`);
     }
   } catch (err) {
