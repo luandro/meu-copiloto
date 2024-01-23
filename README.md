@@ -97,6 +97,19 @@ You'll also need the model files, which can be automatically downloaded using th
 
 ## Extras
 
+### Customizing intent models
+
+To customize the intent models for your application, you can use the [Picovoice Console](https://console.picovoice.ai/). This platform allows you to create and manage your voice models with ease.
+
+1. Sign up for the Picovoice Console if you haven't already, and log in.
+2. Retrieve your AccessKey from the Picovoice Console, which is required for authentication and authorization when using the Picovoice SDKs.
+3. Create a new context for your application by navigating to the Rhino Speech-to-Intent console and selecting the 'Create a new Rhino Context' option.
+4. Upload the yml template in this project's resource's folder and modify according to your needs on the dashboard or directly on the file.
+5. Once satisfied train your model by clicking the 'Train' button.
+6. After training, download your custom Rhino context model and include it in your project's `resources` directory.
+
+By following these steps, you can easily tailor the intent models to better fit the specific requirements and interactions of your application.
+
 ### Using Bluetooth headsets efficiently
 
 In order to have full remote control by just using a Bluetooth headset, we need to customize the controls of the headset's buttons, to switch between different Bluetooth profiles.
